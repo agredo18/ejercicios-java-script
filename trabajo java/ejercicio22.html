@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 22 </h1>
+</body>
+</html>
+
+<script>
+// 22. Romanos a enteros
+const romanosAEnteros = (romano) => {
+  const valores = {
+    'I': 1,
+    'V': 5,
+    'X': 10,
+    'L': 50,
+    'C': 100,
+    'D': 500,
+    'M': 1000
+  };
+
+  let total = 0;
+  for (let i = 0; i < romano.length; i++) {
+    const actual = valores[romano[i]];
+    const siguiente = valores[romano[i + 1]];
+
+    if (siguiente && actual < siguiente) {
+      total -= actual; // Caso de resta (ej: IV = 5 - 1)
+    } else {
+      total += actual;
+    }
+  }
+  return total;
+};
+
+// Ejemplos:
+console.log(romanosAEnteros("III"));   // 3
+console.log(romanosAEnteros("IV"));    // 4
+console.log(romanosAEnteros("IX"));    // 9
+console.log(romanosAEnteros("LVIII")); // 58 (L = 50, V = 5, III = 3)
+console.log(romanosAEnteros("MCMXCIV")); // 1994 (M = 1000, CM = 900, XC = 90, IV = 4)
+</script>

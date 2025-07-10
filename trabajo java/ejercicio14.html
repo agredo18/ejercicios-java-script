@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 14 </h1>
+</body>
+</html>
+
+<script>
+// 14. Serie de Fibonacci hasta N
+const fibonacciHastaN = (n) => {
+  const serie = [];
+  let a = 0;
+  let b = 1;
+
+  if (n >= 0) {
+    serie.push(a);
+  }
+  if (n >= 1) {
+    serie.push(b);
+  }
+
+  while (true) {
+    let siguiente = a + b;
+    if (siguiente <= n) {
+      serie.push(siguiente);
+      a = b;
+      b = siguiente;
+    } else {
+      break;
+    }
+  }
+  return serie;
+};
+
+// Ejemplos:
+console.log(fibonacciHastaN(0));  // [0]
+console.log(fibonacciHastaN(1));  // [0, 1, 1]
+console.log(fibonacciHastaN(10)); // [0, 1, 1, 2, 3, 5, 8]
+console.log(fibonacciHastaN(50)); // [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+</script>

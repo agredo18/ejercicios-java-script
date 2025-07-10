@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 15 </h1>
+</body>
+</html>
+
+<script>
+// 15. Máximo producto de tres
+const maximoProductoDeTres = (arr) => {
+  const n = arr.length;
+  if (n < 3) {
+    throw new Error("El array debe contener al menos 3 elementos.");
+  }
+
+  // Ordenar el array para facilitar la identificación de los candidatos
+  arr.sort((a, b) => a - b);
+
+  // Candidato 1: Producto de los tres números más grandes (positivos)
+  const prod1 = arr[n - 1] * arr[n - 2] * arr[n - 3];
+
+  // Candidato 2: Producto de los dos números más pequeños (negativos) y el número más grande (positivo)
+  // Esto es relevante si hay números negativos grandes en magnitud.
+  const prod2 = arr[0] * arr[1] * arr[n - 1];
+
+  return Math.max(prod1, prod2);
+};
+
+// Ejemplos:
+console.log(maximoProductoDeTres([-10, -3, 5, 6, -20])); // 1800 (-10 * -20 * 9) -> 1800
+console.log(maximoProductoDeTres([1, 2, 3, 4])); // 24 (2 * 3 * 4)
+console.log(maximoProductoDeTres([-1, -2, -3, -4])); // -6 (-1 * -2 * -3)
+console.log(maximoProductoDeTres([-10, -5, 1, 2, 3])); // 150 (-10 * -5 * 3)
+console.log(maximoProductoDeTres([0, 1, 2, 3])); // 6
+
+</script>

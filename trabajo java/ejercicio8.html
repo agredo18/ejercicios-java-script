@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 8 </h1>
+</body>
+</html>
+
+<script>
+// 8. Contador con cierre
+const crearContador = (inicial) => {
+  let valorInterno = inicial; // Variable protegida por el cierre
+
+  return {
+    inc: function() {
+      valorInterno++;
+    },
+    dec: function() {
+      valorInterno--;
+    },
+    valor: function() {
+      return valorInterno;
+    }
+  };
+};
+
+// Ejemplos:
+const miContador = crearContador(5);
+console.log(miContador.valor()); // 5
+miContador.inc();
+miContador.inc();
+console.log(miContador.valor()); // 7
+miContador.dec();
+console.log(miContador.valor()); // 6
+
+const otroContador = crearContador(0);
+otroContador.inc();
+console.log(otroContador.valor()); // 1
+console.log(miContador.valor()); // 6 (demuestra que son independientes)
+
+</script>

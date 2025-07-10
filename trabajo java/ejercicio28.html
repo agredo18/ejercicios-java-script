@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 28 </h1>
+</body>
+</html>
+
+<script>
+// 28. CRUD en memoria para estudiantes
+let estudiantes = [];
+let idEstudiante = 1;
+
+const crearEstudiante = (nombre, edad, carrera) => {
+  const nuevoEstudiante = {
+    id: idEstudiante++,
+    nombre: nombre,
+    edad: edad,
+    carrera: carrera
+  };
+  estudiantes.push(nuevoEstudiante);
+  console.log(`Estudiante ${nombre} creado con ID ${nuevoEstudiante.id}.`);
+  return nuevoEstudiante;
+};
+
+const leerEstudiantes = () => {
+  if (estudiantes.length === 0) {
+    console.log("No hay estudiantes registrados.");
+    return [];
+  }
+  console.log("\n--- Lista de Estudiantes ---");
+  estudiantes.forEach(est => {
+    console.log(`ID: ${est.id}, Nombre: ${est.nombre}, Edad: ${est.edad}, Carrera: ${est.carrera}`);
+  });
+  console.log("----------------------------\n");
+  return estudiantes;
+};
+
+const actualizarEstudiante = (id, nuevosDatos) => {
+  const estudianteIndex = estudiantes.findIndex(est => est.id === id);
+  if (estudianteIndex !== -1) {
+    estudiantes[estudianteIndex] = { ...estudiantes[estudianteIndex], ...nuevosDatos };
+    console.log(`Estudiante con ID ${id} actualizado.`);
+    return estudiantes[estudianteIndex];
+  } else {
+    console.log(`Estudiante con ID ${id} no encontrado.`);
+    return null;
+  }
+};
+
+const borrarEstudiante = (id) => {
+  const initialLength = estudiantes.length;
+  estudiantes = estudiantes.filter(est => est.id !== id);
+  if (estudiantes.length < initialLength) {
+    console.log(`Estudiante con ID ${id} eliminado.`);
+    return true;
+  } else {
+    console.log(`Estudiante con ID ${id} no encontrado.`);
+    return false;
+  }
+};
+
+// Ejemplos de uso:
+crearEstudiante("Ana García", 20, "Ingeniería de Software");
+crearEstudiante("Luis Pérez", 22, "Diseño Gráfico");
+leerEstudiantes();
+/*
+ID: 1, Nombre: Ana García, Edad: 20, Carrera: Ingeniería de Software
+ID: 2, Nombre: Luis Pérez, Edad: 22, Carrera: Diseño Gráfico
+*/
+
+actualizarEstudiante(1, { edad: 21, carrera: "Ingeniería de Sistemas" }); // Estudiante con ID 1 actualizado.
+leerEstudiantes();
+/*
+ID: 1, Nombre: Ana García, Edad: 21, Carrera: Ingeniería de Sistemas
+ID: 2, Nombre: Luis Pérez, Edad: 22, Carrera: Diseño Gráfico
+*/
+
+borrarEstudiante(2); // Estudiante con ID 2 eliminado.
+leerEstudiantes();
+/*
+ID: 1, Nombre: Ana García, Edad: 21, Carrera: Ingeniería de Sistemas
+*/
+borrarEstudiante(99); // Estudiante con ID 99 no encontrado.
+
+</script>

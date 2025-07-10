@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 5 </h1>
+</body>
+</html>
+
+<script>
+// 5. Filtrar palabras por longitud
+const filtrarPalabrasPorLongitud = (arrStrings, n) => {
+  const resultado = [];
+  for (const palabra of arrStrings) {
+    if (palabra.length >= n) {
+      resultado.push(palabra);
+    }
+  }
+  return resultado;
+};
+
+// Ejemplos:
+console.log(filtrarPalabrasPorLongitud(['hola', 'mundo', 'js', 'programacion'], 5)); // ['mundo', 'programacion']
+console.log(filtrarPalabrasPorLongitud(['uno', 'dos', 'tres'], 3)); // ['uno', 'dos', 'tres']
+console.log(filtrarPalabrasPorLongitud(['a', 'b', 'c'], 2)); // []
+</script>

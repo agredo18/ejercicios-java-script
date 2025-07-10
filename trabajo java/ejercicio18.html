@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 18 </h1>
+</body>
+</html>
+
+<script>
+
+// 18. Separar primeros y resto
+const separarPrimerosYResto = (arr) => {
+  if (arr.length < 2) {
+    // Manejar casos donde no hay suficientes elementos
+    return {
+      primero: arr[0],
+      segundo: arr[1],
+      resto: arr.slice(2)
+    };
+  }
+  const [primero, segundo, ...resto] = arr; // Destructuring con rest operator
+  return { primero, segundo, resto };
+};
+
+// Ejemplos:
+console.log(separarPrimerosYResto([1, 2, 3, 4, 5]));
+// { primero: 1, segundo: 2, resto: [3, 4, 5] }
+
+console.log(separarPrimerosYResto(['a', 'b']));
+// { primero: 'a', segundo: 'b', resto: [] }
+
+console.log(separarPrimerosYResto(['solo']));
+// { primero: 'solo', segundo: undefined, resto: [] }
+
+console.log(separarPrimerosYResto([]));
+// { primero: undefined, segundo: undefined, resto: [] }
+
+</script>

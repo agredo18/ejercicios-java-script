@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 19 </h1>
+</body>
+</html>
+
+<script>
+// 19. Clonar y actualizar
+const clonarYActualizarUsuario = (usuario, nuevoEmail) => {
+  // Clonar el objeto usando el spread operator
+  const usuarioClonado = { ...usuario, email: nuevoEmail };
+  return usuarioClonado;
+};
+
+// Ejemplos:
+const usuarioOriginal = {
+  nombre: 'Alice',
+  edad: 30,
+  email: 'alice@example.com'
+};
+
+const usuarioActualizado = clonarYActualizarUsuario(usuarioOriginal, 'alice.new@example.com');
+
+console.log("Usuario Original:", usuarioOriginal);
+// Usuario Original: { nombre: 'Alice', edad: 30, email: 'alice@example.com' }
+
+console.log("Usuario Actualizado:", usuarioActualizado);
+// Usuario Actualizado: { nombre: 'Alice', edad: 30, email: 'alice.new@example.com' }
+
+// Demostrar que el original no cambia:
+console.log("¿Es el mismo objeto?", usuarioOriginal === usuarioActualizado); // false
+console.log("Email del original sigue siendo:", usuarioOriginal.email); // alice@example.com
+
+</script>

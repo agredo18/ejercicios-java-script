@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 7 </h1>
+</body>
+</html>
+
+<script>
+
+// 7. Conversor de divisas
+const cajaCambio = {
+  tasas: {
+    USD: 1, // Base
+    EUR: 0.92,
+    GBP: 0.79,
+    JPY: 155.0
+  },
+  convertir: function(monto, de, a) {
+    if (!this.tasas[de] || !this.tasas[a]) {
+      return "Divisa no soportada.";
+    }
+    // Convertir a USD primero
+    const montoEnUSD = monto / this.tasas[de];
+    // Luego convertir a la divisa destino
+    return montoEnUSD * this.tasas[a];
+  },
+  actualizarTasa: function(moneda, nuevaTasa) {
+    if (nuevaTasa <= 0) {
+      console.log("La tasa debe ser un valor positivo.");
+      return;
+    }
+    this.tasas[moneda] = nuevaTasa;
+    console.log(`Tasa de ${moneda} actualizada a ${nuevaTasa}.`);
+  }
+};
+
+// Ejemplos:
+console.log(cajaCambio.convertir(100, 'USD', 'EUR')); // Aproximadamente 92
+console.log(cajaCambio.convertir(50, 'EUR', 'JPY')); // Aproximadamente 8423.91
+cajaCambio.actualizarTasa('EUR', 0.95);
+console.log(cajaCambio.convertir(100, 'USD', 'EUR')); // Aproximadamente 95
+
+</script>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 29 </h1>
+</body>
+</html>
+
+<script>
+// 29. Trivia de preguntas
+const preguntasTrivia = [
+  {
+    texto: "¿Cuál es la capital de Francia?",
+    opciones: ["Berlín", "Madrid", "París", "Roma"],
+    respuesta: "París"
+  },
+  {
+    texto: "¿Qué lenguaje se usa para estilizar páginas web?",
+    opciones: ["JavaScript", "HTML", "Python", "CSS"],
+    respuesta: "CSS"
+  },
+  {
+    texto: "¿Cuál es el planeta más grande del sistema solar?",
+    opciones: ["Marte", "Júpiter", "Tierra", "Venus"],
+    respuesta: "Júpiter"
+  }
+];
+
+const iniciarTrivia = () => {
+  let puntaje = 0;
+  console.log("\n--- ¡Bienvenido a la Trivia! ---");
+
+  for (let i = 0; i < preguntasTrivia.length; i++) {
+    const pregunta = preguntasTrivia[i];
+    console.log(`\nPregunta ${i + 1}: ${pregunta.texto}`);
+    pregunta.opciones.forEach((opcion, index) => {
+      console.log(`${index + 1}. ${opcion}`);
+    });
+
+    // En un entorno real, aquí usarías 'prompt' o una interfaz de usuario.
+    // Para este ejemplo, simularemos una respuesta.
+    // const respuestaUsuario = prompt("Ingresa el número de tu respuesta:");
+    // const indiceRespuesta = parseInt(respuestaUsuario) - 1;
+
+    // Simulación de respuesta (cambia esto para probar diferentes escenarios)
+    let respuestaSimulada;
+    if (i === 0) respuestaSimulada = 3; // París
+    else if (i === 1) respuestaSimulada = 4; // CSS
+    else if (i === 2) respuestaSimulada = 2; // Júpiter
+
+    const opcionSeleccionada = pregunta.opciones[respuestaSimulada - 1];
+
+    console.log(`Tu respuesta: ${opcionSeleccionada}`);
+
+    if (opcionSeleccionada === pregunta.respuesta) {
+      console.log("¡Correcto!");
+      puntaje++;
+    } else {
+      console.log(`Incorrecto. La respuesta correcta era: ${pregunta.respuesta}`);
+    }
+  }
+
+  console.log("\n--- Trivia Terminada ---");
+  console.log(`Tu puntaje final es: ${puntaje} de ${preguntasTrivia.length}`);
+  console.log("------------------------\n");
+};
+
+// Para ejecutar la trivia, descomenta la siguiente línea:
+// iniciarTrivia();
+</script>

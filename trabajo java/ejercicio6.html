@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 6</h1>
+</body>
+</html>
+
+<script>
+// 6. Catálogo de libros
+const crearLibro = (titulo, autor, año) => {
+  return {
+    titulo: titulo,
+    autor: autor,
+    año: año,
+    resumen: function() {
+      return `${this.titulo} por ${this.autor}, publicado en ${this.año}.`;
+    },
+    esAntiguo: function() {
+      const añoActual = new Date().getFullYear();
+      return (añoActual - this.año) > 20;
+    }
+  };
+};
+
+// Ejemplos:
+const libro1 = crearLibro("Cien años de soledad", "Gabriel García Márquez", 1967);
+console.log(libro1.resumen()); // Cien años de soledad por Gabriel García Márquez, publicado en 1967.
+console.log(libro1.esAntiguo()); // true (si estamos después de 1987)
+
+const libro2 = crearLibro("El código Da Vinci", "Dan Brown", 2003);
+console.log(libro2.resumen()); // El código Da Vinci por Dan Brown, publicado en 2003.
+console.log(libro2.esAntiguo()); // false (si estamos antes de 2023)
+
+</script>

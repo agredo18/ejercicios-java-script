@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 10 </h1>
+</body>
+</html>
+
+
+<script>
+// 10. Juego de naipes simplificado
+const crearCarta = (palo, valor) => {
+  return {
+    palo: palo,
+    valor: valor,
+    toString: function() {
+      return `${this.valor} de ${this.palo}`;
+    }
+  };
+};
+
+const crearBaraja = () => {
+  const palos = ['Corazones', 'Diamantes', 'Tréboles', 'Picas'];
+  const valores = ['As', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+  const baraja = [];
+
+  for (const palo of palos) {
+    for (const valor of valores) {
+      baraja.push(crearCarta(palo, valor));
+    }
+  }
+  return baraja;
+};
+
+// Ejemplos:
+const miBaraja = crearBaraja();
+console.log(`Total de cartas en la baraja: ${miBaraja.length}`); // Total de cartas en la baraja: 52
+console.log("Primera carta:", miBaraja[0].toString()); // As de Corazones
+console.log("Última carta:", miBaraja[miBaraja.length - 1].toString()); // K de Picas
+
+// Verificar que no hay duplicados (por ejemplo, revisando un par)
+const cartaEjemplo1 = crearCarta('Corazones', 'As');
+const cartaEjemplo2 = crearCarta('Corazones', 'As');
+// Aunque los objetos son diferentes, sus propiedades son las mismas.
+// La creación asegura que no se añaden duplicados al array.
+
+</script>

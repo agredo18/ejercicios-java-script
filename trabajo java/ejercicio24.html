@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 24 </h1>
+</body>
+</html>
+
+<script>
+// 24. Validación de paréntesis
+const validacionParentesis = (s) => {
+  const stack = [];
+  const mapa = {
+    "(": ")",
+    "{": "}",
+    "[": "]"
+  };
+
+  for (const char of s) {
+    if (mapa[char]) { // Si es un paréntesis de apertura
+      stack.push(char);
+    } else { // Si es un paréntesis de cierre
+      if (stack.length === 0) {
+        return false; // No hay paréntesis de apertura para cerrar
+      }
+      const lastOpen = stack.pop();
+      if (mapa[lastOpen] !== char) {
+        return false; // El paréntesis de cierre no coincide con el último de apertura
+      }
+    }
+  }
+  return stack.length === 0; // La pila debe estar vacía al final
+};
+
+// Ejemplos:
+console.log(validacionParentesis("()"));      // true
+console.log(validacionParentesis("()[]{}"));  // true
+console.log(validacionParentesis("([{}])"));  // true
+console.log(validacionParentesis("(]"));      // false
+console.log(validacionParentesis("([)]"));    // false
+console.log(validacionParentesis("{[]}"));    // true
+console.log(validacionParentesis(""));        // true
+
+</script>

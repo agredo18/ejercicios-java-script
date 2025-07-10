@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 23 </h1>
+</body>
+</html>
+
+<script>
+// 23. Compresión RLE (Run Length Encoding)
+const compresionRLE = (str) => {
+  if (str.length === 0) {
+    return "";
+  }
+
+  let resultado = "";
+  let count = 1;
+
+  for (let i = 0; i < str.length; i++) {
+    if (i + 1 < str.length && str[i] === str[i + 1]) {
+      count++;
+    } else {
+      resultado += str[i] + count;
+      count = 1; // Resetear contador para el siguiente carácter
+    }
+  }
+  return resultado;
+};
+
+// Ejemplos:
+console.log(compresionRLE("aaabbc"));     // a3b2c1
+console.log(compresionRLE("wwwwaaadexxxxxx")); // w4a3d1e1x6
+console.log(compresionRLE("abc"));        // a1b1c1
+console.log(compresionRLE(""));           // ""
+console.log(compresionRLE("A"));          // A1
+</script>

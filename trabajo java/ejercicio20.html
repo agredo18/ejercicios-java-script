@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 20 </h1>
+</body>
+</html>
+
+<script>
+// 20. Swap de variables
+let a = 10;
+let b = 20;
+
+console.log(`Antes del swap: a = ${a}, b = ${b}`); // Antes del swap: a = 10, b = 20
+
+[a, b] = [b, a]; // Destructuring de arrays para intercambiar valores
+
+console.log(`Después del swap: a = ${a}, b = ${b}`); // Después del swap: a = 20, b = 10
+
+// Otro ejemplo:
+let x = 'hello';
+let y = 'world';
+console.log(`Antes del swap: x = ${x}, y = ${y}`); // Antes del swap: x = hello, y = world
+[x, y] = [y, x];
+console.log(`Después del swap: x = ${x}, y = ${y}`); // Después del swap: x = world, y = hello
+</script>

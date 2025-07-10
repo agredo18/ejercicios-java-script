@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 26 </h1>
+</body>
+</html>
+
+<script>
+// 26. Gestor de tareas en consola
+let tareas = [];
+let nextId = 1;
+
+const agregarTarea = (descripcion) => {
+  tareas.push({
+    id: nextId++,
+    desc: descripcion,
+    done: false
+  });
+  console.log(`Tarea "${descripcion}" agregada.`);
+};
+
+const completarTarea = (id) => {
+  const tarea = tareas.find(t => t.id === id);
+  if (tarea) {
+    tarea.done = true;
+    console.log(`Tarea "${tarea.desc}" marcada como completada.`);
+  } else {
+    console.log(`Tarea con ID ${id} no encontrada.`);
+  }
+};
+
+const eliminarTarea = (id) => {
+  const initialLength = tareas.length;
+  tareas = tareas.filter(t => t.id !== id);
+  if (tareas.length < initialLength) {
+    console.log(`Tarea con ID ${id} eliminada.`);
+  } else {
+    console.log(`Tarea con ID ${id} no encontrada.`);
+  }
+};
+
+const listarPendientes = () => {
+  const pendientes = tareas.filter(t => !t.done);
+  if (pendientes.length === 0) {
+    console.log("No hay tareas pendientes.");
+    return;
+  }
+  console.log("\n--- Tareas Pendientes ---");
+  pendientes.forEach(tarea => {
+    console.log(`[ ] ID: ${tarea.id} - ${tarea.desc}`);
+  });
+  console.log("-------------------------\n");
+};
+
+const listarTodasLasTareas = () => {
+  if (tareas.length === 0) {
+    console.log("No hay tareas en la lista.");
+    return;
+  }
+  console.log("\n--- Todas las Tareas ---");
+  tareas.forEach(tarea => {
+    console.log(`[${tarea.done ? 'X' : ' '}] ID: ${tarea.id} - ${tarea.desc}`);
+  });
+  console.log("------------------------\n");
+};
+
+// Ejemplos de uso:
+agregarTarea("Comprar víveres");
+agregarTarea("Estudiar JavaScript");
+agregarTarea("Hacer ejercicio");
+listarPendientes();
+// [ ] ID: 1 - Comprar víveres
+// [ ] ID: 2 - Estudiar JavaScript
+// [ ] ID: 3 - Hacer ejercicio
+
+completarTarea(2); // Tarea "Estudiar JavaScript" marcada como completada.
+listarPendientes();
+// [ ] ID: 1 - Comprar víveres
+// [ ] ID: 3 - Hacer ejercicio
+
+eliminarTarea(1); // Tarea con ID 1 eliminada.
+listarTodasLasTareas();
+// [ ] ID: 3 - Hacer ejercicio
+// [X] ID: 2 - Estudiar JavaScript
+
+</script>

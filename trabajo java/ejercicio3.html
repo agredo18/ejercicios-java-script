@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 3 </h1>
+</body>
+</html>
+<script>
+// 3. Contar ocurrencias
+const contar = (arr) => {
+  const ocurrencias = {};
+  for (const elemento of arr) {
+    ocurrencias[elemento] = (ocurrencias[elemento] || 0) + 1;
+  }
+  return ocurrencias;
+};
+
+// Ejemplos:
+console.log(contar([1, 2, 2, 3, 1, 4, 2])); // { '1': 2, '2': 3, '3': 1, '4': 1 }
+console.log(contar(['a', 'b', 'a', 'c', 'b', 'a'])); // { 'a': 3, 'b': 2, 'c': 1 }
+console.log(contar([])); // {}
+</script>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 30 </h1>
+</body>
+</html>
+
+<script>
+// 30. Generador de contraseñas seguras
+const generarContraseñaSegura = (longitud, opciones = {}) => {
+  const {
+    mayusculas = true,
+    numeros = true,
+    simbolos = true
+  } = opciones;
+
+  let caracteres = "abcdefghijklmnopqrstuvwxyz";
+  let caracteresNecesarios = "";
+
+  if (mayusculas) {
+    caracteres += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    caracteresNecesarios += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  }
+  if (numeros) {
+    caracteres += "0123456789";
+    caracteresNecesarios += "0123456789";
+  }
+  if (simbolos) {
+    caracteres += "!@#$%^&*()_+[]{}|;:,.<>?";
+    caracteresNecesarios += "!@#$%^&*()_+[]{}|;:,.<>?";
+  }
+
+  if (longitud <= 0) {
+    return "La longitud debe ser mayor que 0.";
+  }
+  if (caracteres.length === 0) {
+    return "Debe seleccionar al menos un tipo de carácter.";
+  }
+
+  let contraseña = "";
+  // Asegurar que al menos un carácter de cada tipo requerido esté presente
+  if (mayusculas) contraseña += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)];
+  if (numeros) contraseña += "0123456789"[Math.floor(Math.random() * 10)];
+  if (simbolos) contraseña += "!@#$%^&*()_+[]{}|;:,.<>?"[Math.floor(Math.random() * 23)]; // Ajustar según el número de símbolos
+
+  // Rellenar el resto de la contraseña
+  for (let i = contraseña.length; i < longitud; i++) {
+    const randomIndex = Math.floor(Math.random() * caracteres.length);
+    contraseña += caracteres[randomIndex];
+  }
+
+  // Mezclar la contraseña para que los caracteres obligatorios no estén siempre al principio
+  contraseña = contraseña.split('').sort(() => 0.5 - Math.random()).join('');
+
+  // Asegurarse de que la longitud final sea la solicitada (puede ser mayor si se agregaron caracteres necesarios)
+  return contraseña.slice(0, longitud);
+};
+
+// Ejemplos:
+console.log("Contraseña básica (8 chars):", generarContraseñaSegura(8, { mayusculas: false, numeros: false, simbolos: false }));
+// Ejemplo: "abcdefgh"
+
+console.log("Contraseña fuerte (12 chars):", generarContraseñaSegura(12));
+// Ejemplo: "aB3$fG7!hJ9kL"
+
+console.log("Contraseña solo números (6 chars):", generarContraseñaSegura(6, { mayusculas: false, numeros: true, simbolos: false }));
+// Ejemplo: "123456"
+
+console.log("Contraseña sin símbolos (10 chars):", generarContraseñaSegura(10, { simbolos: false }));
+// Ejemplo: "aBcDeFgHiJ"
+</script>

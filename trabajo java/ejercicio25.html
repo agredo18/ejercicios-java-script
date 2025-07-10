@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 25 </h1>
+</body>
+</html>
+
+<script>
+// 25. Ruta mínima en matriz 0-1 (BFS)
+// Este es un problema más complejo que requiere un algoritmo de búsqueda en anchura (BFS).
+// Se asume que la matriz es válida (no vacía, contiene solo 0s y 1s).
+// Se busca la ruta más corta desde (0,0) hasta (rows-1, cols-1).
+
+const rutaMinimaEnMatriz = (matriz) => {
+  if (!matriz || matriz.length === 0 || matriz[0].length === 0) {
+    return -1; // Matriz inválida
+  }
+
+  const filas = matriz.length;
+  const cols = matriz[0].length;
+
+  // Si el inicio o el final están bloqueados, no hay ruta
+  if (matriz[0][0] === 1 || matriz[filas - 1][cols - 1] === 1) {
+    return -1;
+  }
+
+  const queue = [];
+  // Cola almacena [fila, columna, distancia]
+  queue.push([0, 0, 1]); // Empezamos en (0,0) con distancia 1
+
+  // Usar un conjunto para mantener un registro de las celdas visitadas
+  // para evitar ciclos y re-procesar celdas.
+  const visited = new Set();
+  visited.add(`0,0`);
+
+  // Direcciones posibles: arriba, abajo, izquierda, derecha
+  const direcciones = [
+    [-1, 0], // Arriba
+    [1, 0],  // Abajo
+    [0, -1], // Izquierda
+    [0, 1]   // Derecha
+  ];
+
+  while (queue.length > 0) {
+    const [r, c, dist] = queue.shift();
+
+    // Si llegamos al destino
+    if (r === filas - 1 && c === cols - 1) {
+      return dist;
+    }
+
+    // Explorar vecinos
+    for (const [dr, dc] of direcciones) {
+      const newR = r + dr;
+      const newC = c + dc;
+      const newCoord = `${newR},${newC}`;
+
+      // Validar vecino: dentro de los límites, no bloqueado (0), y no visitado
+      if (
+        newR >= 0 && newR < filas &&
+        newC >= 0 && newC < cols &&
+        matriz[newR][newC] === 0 &&
+        !visited.has(newCoord)
+      ) {
+        visited.add(newCoord);
+        queue.push([newR, newC, dist + 1]);
+      }
+    }
+  }
+
+  return -1; // No se encontró una ruta
+};
+
+// Ejemplos:
+const matriz1 = [
+  [0, 0, 0],
+  [0, 1, 0],
+  [0, 0, 0]
+];
+console.log(rutaMinimaEnMatriz(matriz1)); // 5 (0,0)->(0,1)->(0,2)->(1,2)->(2,2)
+
+const matriz2 = [
+  [0, 1, 0],
+  [0, 1, 0],
+  [0, 1, 0]
+];
+console.log(rutaMinimaEnMatriz(matriz2)); // -1 (camino bloqueado)
+
+const matriz3 = [
+  [0, 0, 0, 0],
+  [1, 1, 0, 1],
+  [0, 0, 0, 0]
+];
+console.log(rutaMinimaEnMatriz(matriz3)); // 7
+
+const matriz4 = [
+  [0]
+];
+console.log(rutaMinimaEnMatriz(matriz4)); // 1
+
+</script>

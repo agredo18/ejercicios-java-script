@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 12 </h1>
+</body>
+</html>
+
+<script>
+
+// 12. Pirámide de números
+const piramideDeNumeros = (n) => {
+  for (let i = 1; i <= n; i++) {
+    let fila = '';
+    for (let j = 1; j <= i; j++) {
+      fila += j + (j === i ? '' : ' '); // Añadir espacio excepto para el último número
+    }
+    console.log(fila);
+  }
+};
+
+// Ejemplos:
+piramideDeNumeros(5);
+/*
+1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5
+*/
+</script>

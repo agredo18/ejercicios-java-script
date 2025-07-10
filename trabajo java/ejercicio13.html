@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 13 </h1>
+</body>
+</html>
+
+<script>
+// 13. Número perfecto
+const esNumeroPerfecto = (num) => {
+  if (num <= 0) {
+    return false;
+  }
+  let sumaDivisores = 0;
+  for (let i = 1; i < num; i++) {
+    if (num % i === 0) {
+      sumaDivisores += i;
+    }
+  }
+  return sumaDivisores === num;
+};
+
+// Ejemplos:
+console.log(esNumeroPerfecto(6));   // true (1 + 2 + 3 = 6)
+console.log(esNumeroPerfecto(28));  // true (1 + 2 + 4 + 7 + 14 = 28)
+console.log(esNumeroPerfecto(10));  // false (1 + 2 + 5 = 8 != 10)
+console.log(esNumeroPerfecto(1));   // false
+console.log(esNumeroPerfecto(0));   // false
+</script>

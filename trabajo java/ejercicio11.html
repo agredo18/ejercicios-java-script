@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 11 </h1>
+</body>
+</html>
+
+<script>
+
+// 11. FizzBuzz extendido
+const fizzBuzzExtendido = () => {
+  for (let i = 1; i <= 100; i++) {
+    let output = '';
+    if (i % 3 === 0) {
+      output += 'Fizz';
+    }
+    if (i % 5 === 0) {
+      output += 'Buzz';
+    }
+    if (i % 7 === 0) {
+      output += 'Bazz';
+    }
+    console.log(output || i);
+  }
+};
+
+// Ejecutar la función para ver la salida en consola
+// fizzBuzzExtendido();
+/*
+Ejemplo de salida:
+1
+2
+Fizz
+4
+Buzz
+FizzBazz
+...
+15 -> FizzBuzz
+35 -> BuzzBazz
+105 -> FizzBuzzBazz (si el rango fuera hasta 105)
+*/
+</script>

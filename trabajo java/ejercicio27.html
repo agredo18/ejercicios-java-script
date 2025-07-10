@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 27 </h1>
+</body>
+</html>
+
+<script>
+// 27. Simulador de carrito de compras
+const catalogoProductos = [
+  { id: 'P001', nombre: 'Camiseta', precio: 25.00 },
+  { id: 'P002', nombre: 'Pantalón', precio: 40.00 },
+  { id: 'P003', nombre: 'Zapatos', precio: 60.00 },
+  { id: 'P004', nombre: 'Gorra', precio: 15.00 }
+];
+
+let carrito = []; // [{ producto: {id, nombre, precio}, cantidad: N }]
+
+const agregarItem = (productoId, cantidad) => {
+  const productoEnCatalogo = catalogoProductos.find(p => p.id === productoId);
+  if (!productoEnCatalogo) {
+    console.log(`Producto con ID ${productoId} no encontrado en el catálogo.`);
+    return;
+  }
+  if (cantidad <= 0) {
+    console.log("La cantidad debe ser mayor que cero.");
+    return;
+  }
+
+  const itemEnCarrito = carrito.find(item => item.producto.id === productoId);
+  if (itemEnCarrito) {
+    itemEnCarrito.cantidad += cantidad;
+    console.log(`Se agregaron ${cantidad} unidades más de ${productoEnCatalogo.nombre}.`);
+  } else {
+    carrito.push({ producto: productoEnCatalogo, cantidad: cantidad });
+    console.log(`Se agregaron ${cantidad} unidades de ${productoEnCatalogo.nombre} al carrito.`);
+  }
+};
+
+const calcularSubtotal = () => {
+  let subtotal = 0;
+  for (const item of carrito) {
+    subtotal += item.producto.precio * item.cantidad;
+  }
+  return subtotal;
+};
+
+const calcularDescuento = (subtotal, porcentajeDescuento) => {
+  return subtotal * (porcentajeDescuento / 100);
+};
+
+const calcularTotalConIVA = (subtotal, descuento, ivaPorcentaje) => {
+  const totalSinIVA = subtotal - descuento;
+  const ivaMonto = totalSinIVA * (ivaPorcentaje / 100);
+  return totalSinIVA + ivaMonto;
+};
+
+const mostrarCarrito = () => {
+  if (carrito.length === 0) {
+    console.log("El carrito está vacío.");
+    return;
+  }
+  console.log("\n--- Carrito de Compras ---");
+  carrito.forEach(item => {
+    console.log(`${item.producto.nombre} x ${item.cantidad} = \$${(item.producto.precio * item.cantidad).toFixed(2)}`);
+  });
+  console.log("--------------------------\n");
+};
+
+// Ejemplos de uso:
+agregarItem('P001', 2); // Camiseta x 2
+agregarItem('P003', 1); // Zapatos x 1
+agregarItem('P001', 1); // Camiseta x 1 (ahora 3 en total)
+mostrarCarrito();
+/*
+Camiseta x 3 = $75.00
+Zapatos x 1 = $60.00
+*/
+
+const subtotal = calcularSubtotal();
+console.log(`Subtotal: \$${subtotal.toFixed(2)}`); // Subtotal: $135.00
+
+const descuento = calcularDescuento(subtotal, 10); // 10% de descuento
+console.log(`Descuento (10%): \$${descuento.toFixed(2)}`); // Descuento (10%): $13.50
+
+const total = calcularTotalConIVA(subtotal, descuento, 19); // 19% IVA
+console.log(`Total con IVA (19%): \$${total.toFixed(2)}`); // Total con IVA (19%): $144.53
+ 
+</script>

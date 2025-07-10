@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Ejercicio 21 </h1>
+</body>
+</html>
+
+<script>
+// 21. Anagrama
+const limpiarYOrdenar = (str) => {
+  return str
+    .toLowerCase() // Convertir a minúsculas
+    .replace(/[^a-z0-9]/g, '') // Eliminar caracteres no alfanuméricos (espacios, puntuación, etc.)
+    .split('') // Convertir a array de caracteres
+    .sort() // Ordenar alfabéticamente
+    .join(''); // Unir de nuevo en una cadena
+};
+
+const esAnagrama = (a, b) => {
+  return limpiarYOrdenar(a) === limpiarYOrdenar(b);
+};
+
+// Ejemplos:
+console.log(esAnagrama("listen", "silent")); // true
+console.log(esAnagrama("Debit card", "Bad credit")); // true
+console.log(esAnagrama("A gentleman", "Elegant man")); // true
+console.log(esAnagrama("hello", "world")); // false
+console.log(esAnagrama("rail safety", "fairy tales")); // true
+</script>
